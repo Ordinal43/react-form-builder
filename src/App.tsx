@@ -6,8 +6,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<CreateFormView />} />
-        <Route path='/home' element={<HomeView />} />
+        <Route path="/" element={<CreateFormView />} />
+        <Route path="/home" element={<HomeView />} />
       </Routes>
     </Router>
   )

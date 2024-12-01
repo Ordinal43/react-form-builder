@@ -10,12 +10,12 @@ export interface TextField extends BaseField {
 
 export interface SelectField extends BaseField {
   type: 'select'
-  options: Array<{label: string, value: string}>
+  options: Array<{ label: string; value: string }>
 }
 
 export type FormField = TextField | SelectField
 
 export type FormAction =
-  | { type: 'UPDATE_FIELD', index :number, newValue :FormField }
+  | { type: 'UPDATE_FIELD'; index: number; newValue: FormField }
   | { type: 'RESET_FORM' }
-  | { type: 'DELETE_FIELD', index :number }
+  | { type: 'DELETE_FIELD'; index: number }

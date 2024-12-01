@@ -1,14 +1,14 @@
-import { ChangeEvent, Dispatch, useId, useState } from "react";
-import { FormAction, SelectField } from "../../types/formTypes";
-import EditContainer from "../EditContainer";
+import { ChangeEvent, Dispatch, useId, useState } from 'react'
+import { FormAction, SelectField } from '../../types/formTypes'
+import EditContainer from '../EditContainer'
 
 interface EditSelectProps {
-  index: number,
+  index: number
   field: SelectField
   onChange: Dispatch<FormAction>
 }
 
-const EditSelect = ({index, field, onChange}: EditSelectProps) => {
+const EditSelect = ({ index, field, onChange }: EditSelectProps) => {
   const id = useId() // prevent duplicate keys on multiple EditSelects
   const [optionLabel, setOptionLabel] = useState('')
   const [optionValue, setOptionValue] = useState('')
@@ -18,7 +18,7 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
     index: index,
     newValue: {
       ...field,
-    }
+    },
   }
 
   const handleOnChange = (
@@ -26,9 +26,13 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
     type: 'label' | 'name'
   ) => {
     const newVal = e.target.value
-    switch(type) {
-      case 'label': newObj.newValue.label = newVal; break
-      case 'name': newObj.newValue.name = newVal; break
+    switch (type) {
+      case 'label':
+        newObj.newValue.label = newVal
+        break
+      case 'name':
+        newObj.newValue.name = newVal
+        break
     }
     onChange(newObj)
   }
@@ -37,7 +41,7 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
     if (newObj.newValue.type === 'select') {
       newObj.newValue.options.push({
         label: optionLabel,
-        value: optionValue
+        value: optionValue,
       })
     }
     onChange(newObj)
@@ -47,7 +51,7 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
     if (newObj.newValue.type === 'select') {
       newObj.newValue.options = [
         ...newObj.newValue.options.slice(0, index),
-        ...newObj.newValue.options.slice(index+1)
+        ...newObj.newValue.options.slice(index + 1),
       ]
     }
     onChange(newObj)
@@ -74,16 +78,14 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
       <div>
         <p>Options:</p>
         <div>
-          {
-            field.options.map((option, index) => (
-              <div key={`select-${index}-${id}`}>
-                <span>
-                  Label: {option.label}, Value: {option.value}
-                </span>
-                <button onClick={() => deleteOption(index)}>Delete option</button>
-              </div>
-            ))
-          }
+          {field.options.map((option, index) => (
+            <div key={`select-${index}-${id}`}>
+              <span>
+                Label: {option.label}, Value: {option.value}
+              </span>
+              <button onClick={() => deleteOption(index)}>Delete option</button>
+            </div>
+          ))}
         </div>
         <div>
           <input
@@ -102,7 +104,7 @@ const EditSelect = ({index, field, onChange}: EditSelectProps) => {
         </div>
       </div>
     </EditContainer>
-  );
+  )
 }
 
 export default EditSelect

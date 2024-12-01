@@ -1,6 +1,6 @@
-import { ChangeEvent, Dispatch } from "react";
-import { FormAction, TextField } from "../../types/formTypes";
-import EditContainer from "../EditContainer";
+import { ChangeEvent, Dispatch } from 'react'
+import { FormAction, TextField } from '../../types/formTypes'
+import EditContainer from '../EditContainer'
 
 interface EditTextProps {
   index: number
@@ -19,11 +19,15 @@ const EditText = ({ index, field, onChange }: EditTextProps) => {
       index: index,
       newValue: {
         ...field,
-      }
+      },
     }
-    switch(type) {
-      case 'label': newObj.newValue.label = newVal; break
-      case 'name': newObj.newValue.name = newVal; break
+    switch (type) {
+      case 'label':
+        newObj.newValue.label = newVal
+        break
+      case 'name':
+        newObj.newValue.name = newVal
+        break
       case 'placeholder':
         if (newObj.newValue.type !== 'select') {
           newObj.newValue.placeholder = newVal
@@ -59,7 +63,7 @@ const EditText = ({ index, field, onChange }: EditTextProps) => {
         />
       </div>
     </EditContainer>
-  );
+  )
 }
 
-export default EditText;
+export default EditText
