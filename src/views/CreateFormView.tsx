@@ -43,14 +43,14 @@ const formFieldsReducer = (
   switch (action.type) {
     case 'ADD_FIELD':
       return [...state, action.newField]
-    case 'RESET_FORM':
-      return initialState()
     case 'UPDATE_FIELD':
       return state.map((field, idx) =>
         idx === action.index ? action.newValue : field
       )
     case 'DELETE_FIELD':
       return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
+    case 'RESET_FORM':
+      return initialState()
   }
 }
 
@@ -59,6 +59,16 @@ const CreateFormView = () => {
     formFieldsReducer,
     initialState()
   )
+
+  const submitForm = () => {
+    console.log(formFields)
+  }
+
+  const resetForm = () => {
+    dispatchFormFields({
+      type: 'RESET_FORM',
+    })
+  }
 
   return (
     <>
@@ -107,6 +117,9 @@ const CreateFormView = () => {
           )
         })}
       </div>
+      <br />
+      <button onClick={submitForm}>Submit Form</button>
+      <button onClick={resetForm}>Reset Form</button>
     </>
   )
 }
