@@ -2,6 +2,8 @@ import { useReducer } from 'react'
 import { FormAction, FormField } from '../types/formTypes'
 import EditText from '../components/edits/EditText'
 import EditSelect from '../components/edits/EditSelect'
+import EditContainer from '../components/EditContainer'
+import AddForm from '../components/AddForm'
 
 const initialState = (): FormField[] => [
   {
@@ -39,6 +41,8 @@ const formFieldsReducer = (
   action: FormAction
 ): FormField[] => {
   switch (action.type) {
+    case 'ADD_FIELD':
+      return [...state, action.newField]
     case 'RESET_FORM':
       return initialState()
     case 'UPDATE_FIELD':
@@ -59,34 +63,50 @@ const CreateFormView = () => {
   return (
     <>
       <h1>Create Form</h1>
+      <AddForm onChange={dispatchFormFields} />
+      <div>
+        {formFields.map((field, index) => {
+          let input
+          switch (field.type) {
+            case 'text':
+            case 'email':
+            case 'password':
+            case 'textarea':
+              input = (
+                <EditText
+                  index={index}
+                  field={field}
+                  onChange={dispatchFormFields}
+                />
+              )
+              break
+            case 'select':
+              input = (
+                <EditSelect
+                  index={index}
+                  field={field}
+                  onChange={dispatchFormFields}
+                />
+              )
+          }
 
-      {formFields.map((field, index) => {
-        let input
-        switch (field.type) {
-          case 'text':
-          case 'email':
-          case 'password':
-          case 'textarea':
-            input = (
-              <EditText
-                index={index}
-                field={field}
-                onChange={dispatchFormFields}
-              />
-            )
-            break
-          case 'select':
-            input = (
-              <EditSelect
-                index={index}
-                field={field}
-                onChange={dispatchFormFields}
-              />
-            )
-        }
-
-        return <div key={`form-field-${index}`}>{input}</div>
-      })}
+          return (
+            <EditContainer key={`form-field-${index}`}>
+              {input}
+              <br />
+              <button
+                onClick={() =>
+                  dispatchFormFields({
+                    type: 'DELETE_FIELD',
+                    index: index,
+                  })
+                }>
+                Delete field
+              </button>
+            </EditContainer>
+          )
+        })}
+      </div>
     </>
   )
 }

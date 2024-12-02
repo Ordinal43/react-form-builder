@@ -1,6 +1,5 @@
 import { ChangeEvent, Dispatch } from 'react'
 import { FormAction, TextField } from '../../types/formTypes'
-import EditContainer from '../EditContainer'
 
 interface EditTextProps {
   index: number
@@ -37,7 +36,7 @@ const EditText = ({ index, field, onChange }: EditTextProps) => {
     onChange(newObj)
   }
   return (
-    <EditContainer>
+    <>
       <div>
         <input
           type="text"
@@ -62,7 +61,7 @@ const EditText = ({ index, field, onChange }: EditTextProps) => {
           onChange={(e) => handleOnChange(e, 'placeholder')}
         />
       </div>
-    </EditContainer>
+    </>
   )
 }
 

@@ -1,6 +1,5 @@
 import { ChangeEvent, Dispatch, useId, useState } from 'react'
 import { FormAction, SelectField } from '../../types/formTypes'
-import EditContainer from '../EditContainer'
 
 interface EditSelectProps {
   index: number
@@ -58,7 +57,7 @@ const EditSelect = ({ index, field, onChange }: EditSelectProps) => {
   }
 
   return (
-    <EditContainer>
+    <>
       <div>
         <input
           type="text"
@@ -103,7 +102,7 @@ const EditSelect = ({ index, field, onChange }: EditSelectProps) => {
           <button onClick={addNewOption}>Add New Option</button>
         </div>
       </div>
-    </EditContainer>
+    </>
   )
 }
 
