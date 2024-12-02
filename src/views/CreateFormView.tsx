@@ -5,36 +5,7 @@ import EditSelect from '../components/edits/EditSelect'
 import EditContainer from '../components/EditContainer'
 import AddForm from '../components/AddForm'
 
-const initialState = (): FormField[] => [
-  {
-    type: 'text',
-    name: 'username',
-    label: 'Username',
-    placeholder: 'Enter your username',
-  },
-  {
-    type: 'email',
-    name: 'email',
-    label: 'Email',
-    placeholder: 'Enter your email',
-  },
-  {
-    type: 'password',
-    name: 'password',
-    label: 'Password',
-    placeholder: 'Enter your password',
-  },
-  {
-    type: 'select',
-    name: 'gender',
-    label: 'Gender',
-    options: [
-      { label: 'Male', value: 'male' },
-      { label: 'Female', value: 'female' },
-      { label: 'Other', value: 'other' },
-    ],
-  },
-]
+const initialState = (): FormField[] => []
 
 const formFieldsReducer = (
   state: FormField[],
